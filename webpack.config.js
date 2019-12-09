@@ -1,5 +1,7 @@
 var Encore = require('@symfony/webpack-encore');
 
+var CopyWebpackPlugin = require('copy-webpack-plugin'); // pour le dossier images
+
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -54,7 +56,7 @@ Encore
     });
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -64,11 +66,14 @@ Encore
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
+     .addPlugin(new CopyWebpackPlugin([
+        { from: './assets/images', to: 'images' }
+        ]))
 ;
 
 module.exports = Encore.getWebpackConfig();
