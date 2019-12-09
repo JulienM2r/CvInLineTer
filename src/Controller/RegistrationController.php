@@ -74,7 +74,7 @@ class RegistrationController extends AbstractController
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
 
-            return $this->redirectToRoute('user_cv_admin', array('slug' => $this->getUser()->getUsername(), 'id' => $this->getUser()->getId()));
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render(
